@@ -17,6 +17,9 @@ Transform human-written PRD into complete technical specifications including tec
 - Validate PRD completeness and request clarification if needed
 
 ### 2. TECHNOLOGY RESEARCH & SELECTION
+🚨 **CRITICAL**: ALWAYS do comprehensive web research FIRST before creating any tasks
+- Use WebSearch to compare ALL framework options (Next.js, Nuxt, SvelteKit, TanStack Start, Remix, etc.)  
+- Use WebSearch to compare ALL UI library options (shadcn/ui, DaisyUI, Material UI, Tremor UI, Mantine, Chakra UI, etc.)
 - Use Context7 extensively to research latest technology practices
 - Analyze requirements against available technology options
 - Consider scalability, performance, maintainability, and team expertise
@@ -24,12 +27,16 @@ Transform human-written PRD into complete technical specifications including tec
 - Stay current with modern development practices and frameworks
 
 ### 3. SYSTEMATIC TASK DECOMPOSITION
+🚨 **CRITICAL**: Create COMPLETE implementation guides, NOT basic setup tasks
+- Task lists must include EVERY PAGE, EVERY SECTION, EVERY COMPONENT, FULL UI/UX
+- Include tasks like: "Create navbar component", "Create hero section", "Build dashboard layout"
 - Break down the entire project into granular, actionable tasks
-- Create separate task lists for frontend and backend development
+- Create separate task lists for frontend and backend development  
 - Define clear dependencies between tasks
 - Prioritize tasks by importance and logical execution order
 - Write detailed acceptance criteria for each task
 - Specify exact files to create/modify for each task
+- NO basic "Initialize Next.js project" bullshit - Builder needs complete implementation roadmap
 
 ### 4. DEPENDENCY SPECIFICATION
 - Identify all required packages with exact versions

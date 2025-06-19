@@ -1,37 +1,65 @@
 {
   "mcpServers": {
-    "filesystem": {
-      "command": "node",
-      "args": [
-        "../../shared/mcp-servers/filesystem/index.js"
-      ],
-      "env": {
-        "FILESYSTEM_ROOT": "../../workspace"
-      }
-    },
-    "task-queue": {
-      "command": "node",
-      "args": [
-        "../../shared/mcp-servers/task-queue/index.js"
-      ],
-      "env": {
-        "TASK_QUEUE_PATH": "../../workspace/shared/tasks/queue.json"
-      }
-    },
-    "shared-context": {
-      "command": "node",
-      "args": [
-        "../../shared/mcp-servers/shared-context/index.js"
-      ],
-      "env": {
-        "CONTEXT_PATH": "../../workspace/shared/context"
-      }
-    },
     "context7": {
       "command": "npx",
       "args": [
         "-y",
         "@upstash/context7-mcp@latest"
+      ],
+      "env": {}
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ],
+      "env": {
+        "PUPPETEER_LAUNCH_OPTIONS": "{\"headless\": true, \"args\": [\"--no-sandbox\"]}",
+        "SCREENSHOT_DIR": "/home/w3bsuki/omg/claude-multi-agent/workspace/shared/screenshots"
+      }
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      }
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {}
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "env": {}
+    },
+    "ide": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-vscode"
       ],
       "env": {}
     }

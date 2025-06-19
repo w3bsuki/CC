@@ -21,11 +21,15 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#3b82f6" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} bg-gray-50`}>
+        <div id="root">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
