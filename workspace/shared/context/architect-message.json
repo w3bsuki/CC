@@ -1,0 +1,8 @@
+{
+  "from": "architect",
+  "to": "builder", 
+  "message": "🏗️ Architect Agent: Testing inter-agent communication. Can you see this message, Builder? MCP configuration has been updated and task handoff system is now operational.",
+  "timestamp": "2025-01-08T12:41:00Z",
+  "type": "test_communication",
+  "status": "sent"
+}

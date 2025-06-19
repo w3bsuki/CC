@@ -1,5 +1,56 @@
 {
   "mcpServers": {
+    "filesystem": {
+      "command": "node",
+      "args": [
+        "../../mcp/servers/filesystem/index.js"
+      ],
+      "env": {
+        "FILESYSTEM_ROOT": "../../workspace"
+      }
+    },
+    "task-queue": {
+      "command": "node",
+      "args": [
+        "../../mcp/servers/task-queue/index.js"
+      ],
+      "env": {
+        "TASK_QUEUE_PATH": "../../workspace/shared/tasks/queue.json"
+      }
+    },
+    "shared-context": {
+      "command": "node",
+      "args": [
+        "../../mcp/servers/shared-context/index.js"
+      ],
+      "env": {
+        "CONTEXT_PATH": "../../workspace/shared/context"
+      }
+    },
+    "message-bus": {
+      "command": "node",
+      "args": [
+        "../../mcp/servers/message-bus/start-simple.js"
+      ],
+      "env": {
+        "REDIS_URL": "redis://localhost:6380",
+        "REDIS_PASSWORD": "mcp-redis-secret-2025",
+        "MESSAGE_SECRET": "mcp-message-secret-2025",
+        "MAX_HISTORY_SIZE": "1000",
+        "CIRCUIT_BREAKER_THRESHOLD": "5",
+        "CIRCUIT_BREAKER_TIMEOUT": "60000"
+      }
+    },
+    "inter-agent": {
+      "command": "node",
+      "args": [
+        "../../mcp/servers/inter-agent/src/start-server.js"
+      ],
+      "env": {
+        "REDIS_URL": "redis://localhost:6380",
+        "REDIS_PASSWORD": "mcp-redis-secret-2025"
+      }
+    },
     "context7": {
       "command": "npx",
       "args": [
