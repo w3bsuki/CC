@@ -1,0 +1,215 @@
+{
+  "projectName": "Claude Mobile Commander",
+  "version": "1.0.0",
+  "description": "Next.js 15 + React 19 Progressive Web App for mobile agent control",
+  "architecture": "Modern PWA with App Router",
+  "targetPlatforms": ["iOS", "Android", "Desktop"],
+  
+  "coreFramework": {
+    "framework": "Next.js",
+    "version": "15.x",
+    "features": [
+      "App Router with RSC (React Server Components)",
+      "Streaming & Suspense",
+      "Partial Prerendering (PPR)",
+      "React Compiler optimizations",
+      "Built-in PWA support"
+    ],
+    "configurationFiles": ["next.config.js", "manifest.ts"]
+  },
+
+  "frontend": {
+    "library": "React",
+    "version": "19.x",
+    "features": [
+      "Concurrent features",
+      "Server Components",
+      "use() hook for async data",
+      "useOptimistic for optimistic UI",
+      "Enhanced form actions",
+      "Document metadata support"
+    ],
+    "language": "TypeScript",
+    "typeScriptVersion": "5.3+",
+    "strictMode": true
+  },
+
+  "styling": {
+    "framework": "Tailwind CSS",
+    "version": "4.x",
+    "features": [
+      "Mobile-first responsive design",
+      "Dark mode support",
+      "CSS custom properties",
+      "Utility-first approach"
+    ],
+    "configFiles": ["tailwind.config.js"]
+  },
+
+  "pwa": {
+    "serviceWorker": "Built-in Next.js PWA",
+    "features": [
+      "Offline capability",
+      "App installation",
+      "Push notifications",
+      "Background sync",
+      "Caching strategies"
+    ],
+    "manifestConfig": "manifest.ts",
+    "icons": ["192x192", "512x512"],
+    "caching": "Next.js built-in caching"
+  },
+
+  "realTime": {
+    "library": "Socket.io",
+    "version": "4.x",
+    "features": [
+      "Real-time agent status updates",
+      "Bidirectional communication",
+      "Automatic reconnection",
+      "Room-based messaging"
+    ],
+    "fallback": "WebSocket native API"
+  },
+
+  "stateManagement": {
+    "primary": "React 19 built-in",
+    "features": [
+      "useState for local state",
+      "useContext for global state",
+      "Server Components for server state",
+      "useOptimistic for optimistic updates"
+    ],
+    "alternative": "Zustand (if needed)"
+  },
+
+  "authentication": {
+    "provider": "NextAuth.js",
+    "version": "5.x",
+    "features": [
+      "JWT tokens",
+      "Session management",
+      "Multiple providers support",
+      "Secure token storage"
+    ]
+  },
+
+  "notifications": {
+    "webPush": "web-push",
+    "features": [
+      "VAPID authentication",
+      "Cross-platform notifications",
+      "Subscription management",
+      "Background notifications"
+    ],
+    "implementation": "Service Worker + Push API"
+  },
+
+  "deployment": {
+    "platform": "Vercel",
+    "features": [
+      "Edge functions",
+      "Automatic HTTPS",
+      "Global CDN",
+      "Zero-config deployment",
+      "Environment variables"
+    ],
+    "domains": ["Custom domain support"]
+  },
+
+  "testing": {
+    "unitTesting": "Vitest",
+    "e2eTesting": "Playwright",
+    "componentTesting": "React Testing Library",
+    "coverage": "Built-in coverage reporting"
+  },
+
+  "buildTools": {
+    "bundler": "Turbopack (Next.js 15)",
+    "transpiler": "SWC",
+    "features": [
+      "Fast refresh",
+      "Tree shaking",
+      "Code splitting",
+      "Asset optimization"
+    ]
+  },
+
+  "monitoring": {
+    "webVitals": "Next.js built-in",
+    "analytics": "Vercel Analytics",
+    "errorTracking": "Built-in error boundaries"
+  },
+
+  "performance": {
+    "optimization": [
+      "React Compiler automatic optimizations",
+      "Image optimization",
+      "Font optimization",
+      "Lazy loading",
+      "Prefetching"
+    ],
+    "metrics": [
+      "Core Web Vitals",
+      "First Contentful Paint",
+      "Largest Contentful Paint",
+      "Cumulative Layout Shift"
+    ]
+  },
+
+  "security": {
+    "features": [
+      "CSP headers",
+      "CSRF protection",
+      "XSS protection",
+      "Secure headers",
+      "HTTPS enforcement"
+    ],
+    "authentication": "Secure token handling"
+  },
+
+  "dependencies": {
+    "core": {
+      "next": "^15.0.0",
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0",
+      "typescript": "^5.3.0"
+    },
+    "ui": {
+      "tailwindcss": "^4.0.0",
+      "@tailwindcss/forms": "^0.5.0",
+      "@tailwindcss/typography": "^0.5.0"
+    },
+    "realtime": {
+      "socket.io-client": "^4.0.0"
+    },
+    "pwa": {
+      "web-push": "^3.6.0"
+    },
+    "auth": {
+      "next-auth": "^5.0.0"
+    },
+    "testing": {
+      "vitest": "^1.0.0",
+      "playwright": "^1.40.0",
+      "@testing-library/react": "^14.0.0"
+    }
+  },
+
+  "browserSupport": {
+    "modern": "ES2022+",
+    "targets": [
+      "Chrome 91+",
+      "Firefox 90+",
+      "Safari 14+",
+      "Edge 91+"
+    ]
+  },
+
+  "developmentTools": {
+    "linting": "ESLint",
+    "formatting": "Prettier",
+    "preCommit": "Husky + lint-staged",
+    "typeChecking": "TypeScript strict mode"
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "metadata": {
+    "totalTasks": 34,
+    "estimatedDuration": "14-18 days",
+    "phases": ["Setup", "Core Features", "PWA Features", "Polish & Testing"],
+    "dependencies": "Tasks are ordered by logical dependencies and priority"
+  },
+  "tasks": [
+    {
+      "id": "FE-001",
+      "title": "Initialize Next.js 15 Project with TypeScript",
+      "type": "setup",
+      "priority": "critical",
+      "estimatedTime": "30 minutes",
+      "dependencies": [],
+      "description": "Create new Next.js 15 project with App Router, TypeScript, and basic configuration",
+      "acceptanceCriteria": [
+        "Next.js 15 project created with App Router",
+        "TypeScript configured with strict mode",
+        "ESLint and Prettier configured",
+        "Project builds without errors",
+        "Development server starts successfully"
+      ],
+      "files": {
+        "create": [
+          "package.json",
+          "next.config.js",
+          "tsconfig.json",
+          ".eslintrc.json",
+          ".prettierrc",
+          "src/app/layout.tsx",
+          "src/app/page.tsx"
+        ],
+        "modify": []
+      },
+      "commands": [
+        "npx create-next-app@latest task-manager --typescript --tailwind --eslint --app --src-dir",
+        "npm run dev"
+      ],
+      "validation": [
+        "Build completes without TypeScript errors",
+        "ESLint passes with no errors",
+        "Development server accessible at localhost:3000"
+      ]
+    },
+    {
+      "id": "FE-002",
+      "title": "Setup Tailwind CSS with Mobile-First Configuration",
+      "type": "setup",
+      "priority": "high",
+      "estimatedTime": "20 minutes",
+      "dependencies": ["FE-001"],
+      "description": "Configure Tailwind CSS for mobile-first responsive design with custom colors and spacing",
+      "acceptanceCriteria": [
+        "Tailwind CSS configured with mobile-first approach",
+        "Custom color palette defined for task priorities",
+        "Dark mode configuration added",
+        "Custom spacing and typography scales defined",
+        "Purge configuration optimized for production"
+      ],
+      "files": {
+        "create": [
+          "tailwind.config.js",
+          "src/app/globals.css"
+        ],
+        "modify": [
+          "src/app/layout.tsx"
+        ]
+      },
+      "commands": [
+        "npm install -D tailwindcss postcss autoprefixer"
+      ],
+      "validation": [
+        "Tailwind classes render correctly",
+        "Dark mode toggle works",
+        "Mobile-responsive breakpoints function properly"
+      ]
+    },
+    {
+      "id": "FE-003",
+      "title": "Install and Configure Zustand for State Management",
+      "type": "setup",
+      "priority": "high",
+      "estimatedTime": "30 minutes",
+      "dependencies": ["FE-001"],
+      "description": "Setup Zustand store with TypeScript interfaces for task management state",
+      "acceptanceCriteria": [
+        "Zustand installed and configured",
+        "TypeScript interfaces defined for tasks, categories, and filters",
+        "Store structure designed with proper separation of concerns",
+        "Devtools integration configured for development",
+        "Initial state defined with proper types"
+      ],
+      "files": {
+        "create": [
+          "src/store/index.ts",
+          "src/store/types.ts",
+          "src/store/taskStore.ts",
+          "src/store/uiStore.ts"
+        ],
+        "modify": []
+      },
+      "commands": [
+        "npm install zustand",
+        "npm install -D @types/node"
+      ],
+      "validation": [
+        "Store compiles without TypeScript errors",
+        "State updates trigger re-renders correctly",
+        "Devtools show store state changes"
+      ]
+    },
+    {
+      "id": "FE-004",
+      "title": "Setup IndexedDB with idb Library",
+      "type": "setup",
+      "priority": "high",
+      "estimatedTime": "45 minutes",
+      "dependencies": ["FE-003"],
+      "description": "Configure IndexedDB database schema and wrapper functions for offline storage",
+      "acceptanceCriteria": [
+        "idb library installed and configured",
+        "Database schema defined for tasks, categories, and settings",
+        "CRUD operations implemented with proper error handling",
+        "Database versioning and migration strategy defined",
+        "TypeScript interfaces align with database schema"
+      ],
+      "files": {
+        "create": [
+          "src/lib/db.ts",
+          "src/lib/dbTypes.ts",
+          "src/lib/dbOperations.ts"
+        ],
+        "modify": [
+          "src/store/types.ts"
+        ]
+      },
+      "commands": [
+        "npm install idb"
+      ],
+      "validation": [
+        "Database opens successfully in browser",
+        "CRUD operations work without errors",
+        "Database schema matches TypeScript interfaces",
+        "Error handling prevents data corruption"
+      ]
+    },
+    {
+      "id": "FE-005",
+      "title": "Create Task Model and Basic CRUD Operations",
+      "type": "utility",
+      "priority": "critical",
+      "estimatedTime": "60 minutes",
+      "dependencies": ["FE-004"],
+      "description": "Implement core task management functions with IndexedDB persistence",
+      "acceptanceCriteria": [
+        "Task interface with all required properties defined",
+        "Create, read, update, delete operations implemented",
+        "Task validation logic with proper error handling",
+        "Due date and priority handling implemented",
+        "Search and filter operations optimized for IndexedDB"
+      ],
+      "files": {
+        "create": [
+          "src/lib/taskOperations.ts",
+          "src/lib/validation.ts",
+          "src/lib/constants.ts"
+        ],
+        "modify": [
+          "src/lib/dbOperations.ts",
+          "src/store/taskStore.ts"
+        ]
+      },
+      "commands": [],
+      "validation": [
+        "All CRUD operations persist to IndexedDB",
+        "Task validation prevents invalid data",
+        "Search operations return correct results",
+        "Error handling prevents crashes"
+      ]
+    }
+  ],
+  "execution_order": [
+    "FE-001", "FE-002", "FE-003", "FE-004", "FE-005"
+  ]
+}

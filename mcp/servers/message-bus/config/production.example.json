@@ -1,0 +1,123 @@
+{
+  "redis": {
+    "url": "redis://your-redis-host:6379",
+    "password": "your-secure-password",
+    "cluster": false,
+    "sentinels": [
+      {
+        "host": "sentinel1.example.com",
+        "port": 26379
+      },
+      {
+        "host": "sentinel2.example.com",
+        "port": 26379
+      }
+    ],
+    "name": "mymaster",
+    "tls": {
+      "enabled": true,
+      "rejectUnauthorized": true,
+      "ca": "/path/to/ca.crt",
+      "cert": "/path/to/client.crt",
+      "key": "/path/to/client.key"
+    }
+  },
+  "messageBus": {
+    "maxMessageHistory": 1000,
+    "messageRetention": 86400,
+    "secretKey": "${MESSAGE_BUS_SECRET}",
+    "encryption": {
+      "enabled": true,
+      "algorithm": "aes-256-gcm"
+    },
+    "compression": {
+      "enabled": true,
+      "threshold": 1024,
+      "algorithm": "gzip"
+    }
+  },
+  "security": {
+    "authentication": {
+      "enabled": true,
+      "type": "jwt",
+      "secret": "${JWT_SECRET}",
+      "expiresIn": "24h"
+    },
+    "authorization": {
+      "enabled": true,
+      "roles": {
+        "admin": ["*"],
+        "agent": ["send_message", "subscribe", "get_messages"],
+        "observer": ["get_messages", "health_check"]
+      }
+    },
+    "rateLimiting": {
+      "enabled": true,
+      "windowMs": 60000,
+      "maxRequests": 100,
+      "keyGenerator": "agentId"
+    }
+  },
+  "monitoring": {
+    "metrics": {
+      "enabled": true,
+      "prometheus": {
+        "enabled": true,
+        "port": 9090,
+        "path": "/metrics"
+      }
+    },
+    "logging": {
+      "level": "info",
+      "format": "json",
+      "transports": [
+        {
+          "type": "file",
+          "filename": "/var/log/message-bus/app.log",
+          "maxSize": "100m",
+          "maxFiles": 10
+        },
+        {
+          "type": "console"
+        }
+      ]
+    },
+    "tracing": {
+      "enabled": true,
+      "jaeger": {
+        "serviceName": "message-bus",
+        "agentHost": "localhost",
+        "agentPort": 6831
+      }
+    }
+  },
+  "performance": {
+    "messageQueue": {
+      "maxSize": 10000,
+      "processingConcurrency": 10,
+      "batchSize": 100
+    },
+    "cache": {
+      "enabled": true,
+      "ttl": 300,
+      "maxSize": 1000
+    }
+  },
+  "resilience": {
+    "circuitBreaker": {
+      "threshold": 5,
+      "timeout": 60000,
+      "resetTimeout": 30000
+    },
+    "retry": {
+      "maxAttempts": 3,
+      "initialDelay": 1000,
+      "maxDelay": 10000,
+      "factor": 2
+    },
+    "bulkhead": {
+      "maxConcurrent": 100,
+      "maxQueued": 1000
+    }
+  }
+}

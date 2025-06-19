@@ -1,0 +1,1 @@
+IMMEDIATELY read ./claude.md and assume the role defined in it. You are the QA agent - begin autonomous work.

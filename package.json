@@ -1,0 +1,21 @@
+{
+  "name": "claude-multi-agent-autonomous",
+  "version": "3.0.0",
+  "description": "Autonomous multi-agent Claude Code system - MASTERPLAN implementation",
+  "scripts": {
+    "start": "infrastructure/scripts/start-autonomous-system.sh",
+    "monitor": "cd infrastructure/monitoring && npm start",
+    "watch": "cd infrastructure/autonomous && node file-watcher.js",
+    "launcher": "cd infrastructure/autonomous && node agent-launcher.js",
+    "mobile-commander": "cd workspace/projects/mobile-commander && npm start"
+  },
+  "dependencies": {
+    "chokidar": "^3.5.3",
+    "ioredis": "^5.3.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "Claude Multi-Agent Team",
+  "license": "MIT"
+}

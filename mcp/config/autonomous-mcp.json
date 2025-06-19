@@ -1,0 +1,106 @@
+{
+  "mcpServers": {
+    "filesystem": {
+      "command": "node",
+      "args": ["/home/w3bsuki/omg/claude-multi-agent/omg-new/mcp/servers/filesystem/index.js"],
+      "env": {
+        "FILESYSTEM_ROOT": "/home/w3bsuki/omg/workspace"
+      }
+    },
+    "task-queue": {
+      "command": "node",
+      "args": ["/home/w3bsuki/omg/claude-multi-agent/omg-new/mcp/servers/task-queue/index.js"],
+      "env": {
+        "TASK_QUEUE_PATH": "/home/w3bsuki/omg/workspace/shared/tasks/queue.json"
+      }
+    },
+    "shared-context": {
+      "command": "node",
+      "args": ["/home/w3bsuki/omg/claude-multi-agent/omg-new/mcp/servers/shared-context/index.js"],
+      "env": {
+        "CONTEXT_PATH": "/home/w3bsuki/omg/workspace/shared/context"
+      }
+    },
+    "message-bus": {
+      "command": "node",
+      "args": ["/home/w3bsuki/omg/claude-multi-agent/omg-new/mcp/servers/message-bus/start-simple.js"],
+      "env": {
+        "REDIS_URL": "redis://localhost:6380",
+        "REDIS_PASSWORD": "mcp-redis-secret-2025",
+        "MESSAGE_SECRET": "mcp-message-secret-2025",
+        "MAX_HISTORY_SIZE": "1000",
+        "CIRCUIT_BREAKER_THRESHOLD": "5",
+        "CIRCUIT_BREAKER_TIMEOUT": "60000"
+      }
+    },
+    "inter-agent": {
+      "command": "node",
+      "args": ["/home/w3bsuki/omg/claude-multi-agent/omg-new/mcp/servers/inter-agent/src/start-server.js"],
+      "env": {
+        "REDIS_URL": "redis://localhost:6380",
+        "REDIS_PASSWORD": "mcp-redis-secret-2025"
+      }
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "env": {}
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer"],
+      "env": {
+        "PUPPETEER_LAUNCH_OPTIONS": "{\"headless\": true, \"args\": [\"--no-sandbox\"]}",
+        "SCREENSHOT_DIR": "/home/w3bsuki/omg/workspace/shared/screenshots"
+      }
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      }
+    },
+    "google-maps": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-google-maps"],
+      "env": {
+        "GOOGLE_MAPS_API_KEY": "${GOOGLE_MAPS_API_KEY}"
+      }
+    },
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}"
+      }
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"],
+      "env": {}
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"],
+      "env": {}
+    },
+    "everything": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-everything"],
+      "env": {}
+    },
+    "ide": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-vscode"],
+      "env": {}
+    }
+  }
+}

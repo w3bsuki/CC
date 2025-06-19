@@ -1,0 +1,16 @@
+{
+  "name": "mcp-server-shared-context",
+  "version": "1.0.0",
+  "description": "MCP server for managing shared context between agents",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@types/node": "^24.0.3",
+    "chokidar": "^3.5.3",
+    "fs-extra": "^11.2.0",
+    "typescript": "^5.8.3"
+  }
+}

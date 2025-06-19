@@ -1,0 +1,1 @@
+IMMEDIATELY read ./claude.md and assume the role defined in it. You are the PRD agent - begin autonomous work.

@@ -1,0 +1,118 @@
+{
+  "performanceReport": {
+    "timestamp": "2025-06-19T08:00:00Z",
+    "applicationTarget": "Mobile Commander PWA",
+    "testStatus": "BLOCKED",
+    "overallPerformance": "CANNOT_ASSESS",
+    "summary": {
+      "prdRequirements": {
+        "responseTime": "< 200ms",
+        "uptime": "99.9%",
+        "batteryOptimized": "Required",
+        "lowBandwidthSupport": "Required"
+      },
+      "actualMetrics": {
+        "responseTime": "N/A - App not accessible",
+        "uptime": "N/A - App not deployed",
+        "batteryUsage": "N/A - Cannot measure",
+        "networkEfficiency": "N/A - Cannot test"
+      }
+    },
+    "webVitals": {
+      "firstContentfulPaint": {
+        "requirement": "< 1.8s",
+        "actual": "N/A",
+        "status": "NOT_TESTED"
+      },
+      "largestContentfulPaint": {
+        "requirement": "< 2.5s",
+        "actual": "N/A",
+        "status": "NOT_TESTED"
+      },
+      "firstInputDelay": {
+        "requirement": "< 100ms",
+        "actual": "N/A",
+        "status": "NOT_TESTED"
+      },
+      "cumulativeLayoutShift": {
+        "requirement": "< 0.1",
+        "actual": "N/A",
+        "status": "NOT_TESTED"
+      }
+    },
+    "mobilePerformance": {
+      "appStartupTime": {
+        "requirement": "< 3s",
+        "actual": "N/A",
+        "status": "NOT_TESTED"
+      },
+      "memoryUsage": {
+        "requirement": "< 100MB baseline",
+        "actual": "N/A",
+        "status": "NOT_TESTED"
+      },
+      "batteryImpact": {
+        "requirement": "Minimal impact",
+        "actual": "N/A",
+        "status": "NOT_TESTED"
+      },
+      "networkEfficiency": {
+        "requirement": "Optimized for low bandwidth",
+        "actual": "N/A",
+        "status": "NOT_TESTED"
+      }
+    },
+    "realTimePerformance": {
+      "webSocketLatency": {
+        "requirement": "Sub-second updates",
+        "actual": "N/A",
+        "status": "NOT_TESTED"
+      },
+      "agentStatusUpdates": {
+        "requirement": "Real-time",
+        "actual": "N/A",
+        "status": "NOT_TESTED"
+      },
+      "buildLogStreaming": {
+        "requirement": "Real-time",
+        "actual": "N/A",
+        "status": "NOT_TESTED"
+      }
+    },
+    "issues": [
+      {
+        "severity": "CRITICAL",
+        "category": "Test Execution",
+        "description": "Cannot perform performance testing without deployed application",
+        "impact": "Performance requirements cannot be validated",
+        "recommendation": "Deploy application to test environment first"
+      },
+      {
+        "severity": "HIGH",
+        "category": "Performance Monitoring",
+        "description": "No performance monitoring infrastructure detected",
+        "impact": "Cannot track performance in production",
+        "recommendation": "Implement performance monitoring with tools like Lighthouse, Web Vitals API"
+      }
+    ],
+    "recommendations": [
+      "Implement performance monitoring from the start of development",
+      "Use Lighthouse CI for automated performance testing",
+      "Add real user monitoring (RUM) for production insights",
+      "Implement performance budgets and alerting",
+      "Test on actual mobile devices with varying network conditions"
+    ],
+    "testPlan": {
+      "whenApplicationAvailable": [
+        "Run Lighthouse audits for mobile and desktop",
+        "Measure Core Web Vitals across different devices",
+        "Test WebSocket connection performance and reliability",
+        "Measure app startup time on various mobile devices",
+        "Test battery usage during extended usage sessions",
+        "Validate performance on slow network connections (3G/4G)",
+        "Load test with multiple concurrent users",
+        "Memory leak testing during extended usage"
+      ]
+    }
+  }
+}

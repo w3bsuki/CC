@@ -1,0 +1,329 @@
+{
+  "projectName": "Claude Mobile Commander",
+  "architectureType": "Progressive Web App (PWA)",
+  "lastUpdated": "2025-01-19",
+  
+  "systemOverview": {
+    "description": "Mobile-first PWA for remote Claude agent management with real-time monitoring, task control, and build oversight",
+    "keyCharacteristics": [
+      "Server-side rendering with client-side interactivity",
+      "Real-time bidirectional communication",
+      "Offline-capable progressive web app",
+      "Mobile-optimized responsive design",
+      "Sub-200ms response time requirement"
+    ]
+  },
+
+  "architecturalPrinciples": {
+    "performance": "Mobile-first, sub-200ms interactions",
+    "reliability": "99.9% uptime, offline resilience",
+    "scalability": "Support multiple agents and users",
+    "security": "End-to-end encryption, secure authentication",
+    "usability": "Intuitive mobile interface, zero training required"
+  },
+
+  "applicationLayers": {
+    "presentation": {
+      "technology": "React 19 + Next.js 15 App Router",
+      "responsibilities": [
+        "Mobile-responsive UI components",
+        "Progressive web app features",
+        "Real-time status updates",
+        "Optimistic UI updates",
+        "Offline functionality"
+      ],
+      "patterns": [
+        "Server Components for initial rendering",
+        "Client Components for interactivity",
+        "Streaming with Suspense",
+        "Progressive enhancement"
+      ]
+    },
+    
+    "businessLogic": {
+      "location": "Next.js Server Actions + Client-side logic",
+      "responsibilities": [
+        "Agent command processing",
+        "Task lifecycle management",
+        "Real-time event handling",
+        "Authentication & authorization",
+        "Data validation"
+      ],
+      "patterns": [
+        "Server Actions for mutations",
+        "Custom hooks for client logic",
+        "Context for global state",
+        "Optimistic updates"
+      ]
+    },
+
+    "dataAccess": {
+      "technology": "WebSocket + HTTP APIs",
+      "responsibilities": [
+        "Real-time agent communication",
+        "Task data synchronization",
+        "Build log streaming",
+        "Authentication token management"
+      ],
+      "patterns": [
+        "Socket.io for real-time updates",
+        "HTTP/2 for API requests",
+        "Optimistic caching",
+        "Background sync"
+      ]
+    }
+  },
+
+  "componentArchitecture": {
+    "pageComponents": {
+      "dashboard": {
+        "path": "/app/dashboard/page.tsx",
+        "type": "Server Component",
+        "responsibilities": ["Agent overview", "System status", "Quick actions"],
+        "dataFetching": "Server-side initial load"
+      },
+      "agents": {
+        "path": "/app/agents/page.tsx", 
+        "type": "Server Component",
+        "responsibilities": ["Agent list", "Status monitoring", "Control actions"],
+        "dataFetching": "Server-side + real-time updates"
+      },
+      "tasks": {
+        "path": "/app/tasks/page.tsx",
+        "type": "Server Component", 
+        "responsibilities": ["Task management", "PRD submission", "Progress tracking"],
+        "dataFetching": "Server-side + optimistic updates"
+      },
+      "builds": {
+        "path": "/app/builds/page.tsx",
+        "type": "Server Component",
+        "responsibilities": ["Build monitoring", "Log streaming", "Download management"],
+        "dataFetching": "Server-side + real-time streaming"
+      }
+    },
+
+    "sharedComponents": {
+      "AgentStatusCard": {
+        "type": "Client Component",
+        "responsibilities": ["Real-time status display", "Quick actions", "Health indicators"],
+        "state": "Socket.io connection"
+      },
+      "TaskProgressBar": {
+        "type": "Client Component", 
+        "responsibilities": ["Progress visualization", "Real-time updates", "ETA calculation"],
+        "state": "Optimistic updates"
+      },
+      "BuildLogViewer": {
+        "type": "Client Component",
+        "responsibilities": ["Log streaming", "Search/filter", "Download functionality"],
+        "state": "WebSocket stream"
+      },
+      "NotificationManager": {
+        "type": "Client Component",
+        "responsibilities": ["Push notifications", "In-app alerts", "Subscription management"],
+        "state": "Service Worker integration"
+      }
+    }
+  },
+
+  "dataFlow": {
+    "initialPageLoad": {
+      "1": "Next.js Server Component renders initial HTML",
+      "2": "Critical CSS and JavaScript loaded",
+      "3": "Hydration occurs for interactive components", 
+      "4": "Service Worker registers for PWA features",
+      "5": "WebSocket connection established"
+    },
+    
+    "realTimeUpdates": {
+      "1": "Agent system publishes status changes",
+      "2": "Socket.io broadcasts to connected clients",
+      "3": "Client receives update via WebSocket",
+      "4": "React state updated with new data",
+      "5": "UI re-renders with optimistic updates"
+    },
+
+    "userActions": {
+      "1": "User triggers action (button click, form submit)",
+      "2": "Optimistic UI update for immediate feedback",
+      "3": "Server Action processes request",
+      "4": "WebSocket broadcasts result to all clients",
+      "5": "UI confirms or reverts optimistic update"
+    }
+  },
+
+  "realTimeArchitecture": {
+    "communication": {
+      "protocol": "WebSocket (Socket.io)",
+      "features": [
+        "Automatic reconnection",
+        "Room-based messaging",
+        "Binary data support",
+        "Fallback to HTTP long-polling"
+      ]
+    },
+    
+    "eventTypes": {
+      "agentStatus": "Agent health and availability changes",
+      "taskProgress": "Task execution progress and completion",
+      "buildLogs": "Real-time build output streaming",
+      "systemAlerts": "Error conditions and system notifications"
+    },
+
+    "subscriptionModel": {
+      "userSpecific": "Subscribe to user's agents and tasks",
+      "globalEvents": "System-wide status and alerts",
+      "roomBased": "Agent-specific or task-specific channels"
+    }
+  },
+
+  "pwaArchitecture": {
+    "serviceWorker": {
+      "location": "/public/sw.js",
+      "responsibilities": [
+        "Asset caching",
+        "Background sync",
+        "Push notifications",
+        "Offline fallbacks"
+      ],
+      "cachingStrategy": {
+        "static": "Cache first (HTML, CSS, JS)",
+        "api": "Network first with fallback",
+        "images": "Cache first with update"
+      }
+    },
+
+    "manifest": {
+      "location": "/app/manifest.ts",
+      "features": [
+        "App installation",
+        "Splash screen",
+        "Theme colors",
+        "Icon sets (192x192, 512x512)"
+      ]
+    },
+
+    "offlineSupport": {
+      "strategy": "Cache-first for shell, network-first for data",
+      "fallbacks": [
+        "Cached agent status",
+        "Offline task queue",
+        "Local notification storage"
+      ]
+    }
+  },
+
+  "securityArchitecture": {
+    "authentication": {
+      "method": "JWT tokens with NextAuth.js",
+      "storage": "Secure httpOnly cookies",
+      "refresh": "Automatic token refresh",
+      "fallback": "Redirect to login page"
+    },
+
+    "authorization": {
+      "model": "Role-based access control",
+      "enforcement": "Server Actions and API routes",
+      "granularity": "Per-agent and per-task permissions"
+    },
+
+    "communication": {
+      "transport": "HTTPS/WSS only",
+      "headers": "CSP, HSTS, X-Frame-Options",
+      "validation": "Input sanitization and validation"
+    }
+  },
+
+  "performanceOptimizations": {
+    "rendering": {
+      "strategy": "Partial Prerendering (PPR)",
+      "features": [
+        "Server Components for initial render",
+        "Streaming for progressive loading",
+        "Suspense boundaries for loading states",
+        "React Compiler optimizations"
+      ]
+    },
+
+    "bundling": {
+      "tool": "Turbopack",
+      "optimizations": [
+        "Code splitting by route",
+        "Dynamic imports for heavy components",
+        "Tree shaking",
+        "Asset optimization"
+      ]
+    },
+
+    "caching": {
+      "levels": [
+        "CDN caching (Vercel Edge)",
+        "Browser caching",
+        "Service Worker caching",
+        "API response caching"
+      ]
+    }
+  },
+
+  "deploymentArchitecture": {
+    "platform": "Vercel",
+    "regions": ["Global Edge Network"],
+    "features": [
+      "Automatic HTTPS",
+      "Edge functions",
+      "Zero-downtime deployment",
+      "Environment-based configuration"
+    ],
+
+    "environments": {
+      "development": {
+        "url": "localhost:3000",
+        "features": ["Hot reload", "Development tools", "Mock data"]
+      },
+      "staging": {
+        "url": "staging.mobile-commander.vercel.app",
+        "features": ["Production build", "Test data", "Performance monitoring"]
+      },
+      "production": {
+        "url": "mobile-commander.vercel.app",
+        "features": ["Production data", "Analytics", "Error tracking"]
+      }
+    }
+  },
+
+  "monitoringAndObservability": {
+    "metrics": {
+      "webVitals": "Built-in Next.js monitoring",
+      "performance": "Core Web Vitals tracking",
+      "errors": "Error boundaries and logging",
+      "usage": "Vercel Analytics"
+    },
+
+    "logging": {
+      "client": "Console and error boundaries",
+      "server": "Next.js built-in logging",
+      "realTime": "Socket.io connection logs"
+    }
+  },
+
+  "scalabilityConsiderations": {
+    "horizontal": "Vercel's auto-scaling edge functions",
+    "vertical": "Optimized bundle sizes and lazy loading",
+    "database": "Stateless architecture with external agent system",
+    "realTime": "Socket.io clustering for multiple instances"
+  },
+
+  "integrationPoints": {
+    "agentSystem": {
+      "protocol": "WebSocket + HTTP APIs",
+      "authentication": "JWT token exchange",
+      "data": "Real-time status and command interface"
+    },
+
+    "buildSystem": {
+      "protocol": "Server-sent events or WebSocket",
+      "data": "Build logs and artifact downloads",
+      "notifications": "Build completion alerts"
+    }
+  }
+}

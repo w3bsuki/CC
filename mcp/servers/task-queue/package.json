@@ -1,0 +1,16 @@
+{
+  "name": "mcp-server-task-queue",
+  "version": "1.0.0",
+  "description": "MCP server for managing the multi-agent task queue",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@types/node": "^24.0.3",
+    "fs-extra": "^11.2.0",
+    "lockfile": "^1.0.4",
+    "typescript": "^5.8.3"
+  }
+}

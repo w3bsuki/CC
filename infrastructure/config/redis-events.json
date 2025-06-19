@@ -1,0 +1,20 @@
+{
+  "redis": {
+    "host": "localhost",
+    "port": 6380,
+    "events": {
+      "agent:completed": "agent_completion_channel",
+      "file:changed": "file_change_channel", 
+      "workflow:status": "workflow_status_channel"
+    }
+  },
+  "fileWatcher": {
+    "enabled": true,
+    "patterns": [
+      "/workspace/shared/requirements/*.md",
+      "/workspace/shared/requirements/*.json",
+      "/workspace/shared/architecture/*.json"
+    ],
+    "debounce": 1000
+  }
+}

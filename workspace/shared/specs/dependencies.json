@@ -1,0 +1,233 @@
+{
+  "metadata": {
+    "nodeVersion": "18.x LTS",
+    "npmVersion": "10.x",
+    "packageManager": "npm",
+    "totalPackages": 47,
+    "installationOrder": "Production dependencies first, then development dependencies"
+  },
+  "production": {
+    "core": {
+      "next": "^15.1.8",
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0",
+      "typescript": "^5.3.0"
+    },
+    "stateManagement": {
+      "zustand": "^4.5.0"
+    },
+    "styling": {
+      "tailwindcss": "^3.4.0",
+      "autoprefixer": "^10.4.0",
+      "postcss": "^8.4.0"
+    },
+    "database": {
+      "idb": "^8.0.0"
+    },
+    "forms": {
+      "react-hook-form": "^7.48.0"
+    },
+    "dateTime": {
+      "date-fns": "^3.0.0"
+    },
+    "ui": {
+      "react-hot-toast": "^2.4.0"
+    },
+    "performance": {
+      "react-window": "^1.8.0",
+      "react-window-infinite-loader": "^1.0.0"
+    },
+    "search": {
+      "fuse.js": "^7.0.0"
+    },
+    "dragDrop": {
+      "react-beautiful-dnd": "^13.1.0"
+    },
+    "charts": {
+      "recharts": "^2.8.0"
+    },
+    "calendar": {
+      "react-big-calendar": "^1.8.0"
+    },
+    "csv": {
+      "papaparse": "^5.4.0"
+    },
+    "theming": {
+      "next-themes": "^0.2.0"
+    },
+    "notifications": {
+      "web-push": "^3.6.0"
+    },
+    "analytics": {
+      "web-vitals": "^3.5.0"
+    }
+  },
+  "development": {
+    "testing": {
+      "jest": "^29.7.0",
+      "@testing-library/react": "^14.1.0",
+      "@testing-library/jest-dom": "^6.1.0",
+      "@testing-library/user-event": "^14.5.0",
+      "jest-environment-jsdom": "^29.7.0"
+    },
+    "types": {
+      "@types/node": "^20.10.0",
+      "@types/react": "^18.2.0",
+      "@types/react-dom": "^18.2.0",
+      "@types/papaparse": "^5.3.0",
+      "@types/web": "^0.0.0"
+    },
+    "linting": {
+      "eslint": "^8.55.0",
+      "@typescript-eslint/eslint-plugin": "^6.14.0",
+      "@typescript-eslint/parser": "^6.14.0",
+      "eslint-config-next": "^15.1.8",
+      "prettier": "^3.1.0",
+      "eslint-config-prettier": "^9.1.0"
+    },
+    "bundleAnalysis": {
+      "webpack-bundle-analyzer": "^4.10.0"
+    }
+  },
+  "global": {
+    "required": [
+      "Node.js 18.x LTS or higher",
+      "npm 10.x or higher"
+    ],
+    "optional": [
+      "VS Code with TypeScript extension",
+      "Chrome/Edge for PWA testing"
+    ]
+  },
+  "installationCommands": {
+    "setup": [
+      "npm install next@latest react@latest react-dom@latest",
+      "npm install -D typescript @types/node @types/react @types/react-dom",
+      "npm install -D tailwindcss postcss autoprefixer",
+      "npm install -D eslint eslint-config-next prettier"
+    ],
+    "stateAndData": [
+      "npm install zustand idb",
+      "npm install react-hook-form date-fns"
+    ],
+    "ui": [
+      "npm install react-hot-toast next-themes",
+      "npm install react-window react-window-infinite-loader",
+      "npm install react-beautiful-dnd recharts react-big-calendar"
+    ],
+    "utilities": [
+      "npm install fuse.js papaparse web-push web-vitals",
+      "npm install -D @types/papaparse"
+    ],
+    "testing": [
+      "npm install -D jest @testing-library/react @testing-library/jest-dom",
+      "npm install -D @testing-library/user-event jest-environment-jsdom"
+    ],
+    "development": [
+      "npm install -D @typescript-eslint/eslint-plugin @typescript-eslint/parser",
+      "npm install -D eslint-config-prettier webpack-bundle-analyzer"
+    ]
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "typescript": ">=5.0.0"
+  },
+  "optionalDependencies": {
+    "sharp": "^0.32.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=10.0.0"
+  },
+  "packageVersions": {
+    "exact": [
+      "next@15.1.8",
+      "react@19.0.0",
+      "react-dom@19.0.0"
+    ],
+    "compatible": [
+      "typescript@^5.3.0",
+      "tailwindcss@^3.4.0",
+      "zustand@^4.5.0"
+    ],
+    "flexible": [
+      "date-fns@^3.0.0",
+      "fuse.js@^7.0.0",
+      "papaparse@^5.4.0"
+    ]
+  },
+  "developmentSetup": {
+    "prerequisites": [
+      "Node.js 18.x LTS installed",
+      "npm 10.x or yarn 1.22.x installed",
+      "Git for version control",
+      "VS Code or preferred IDE"
+    ],
+    "environmentVariables": {
+      "required": [
+        "NEXT_PUBLIC_VAPID_PUBLIC_KEY",
+        "VAPID_PRIVATE_KEY",
+        "VAPID_EMAIL"
+      ],
+      "optional": [
+        "NEXT_PUBLIC_ANALYTICS_ENABLED=false",
+        "NEXT_PUBLIC_SW_ENABLED=true",
+        "NEXT_PUBLIC_LOG_LEVEL=error",
+        "NEXT_PUBLIC_MONITORING_ENABLED=true"
+      ]
+    },
+    "configFiles": [
+      "next.config.js",
+      "tailwind.config.js",
+      "tsconfig.json",
+      ".eslintrc.json",
+      ".prettierrc",
+      "jest.config.js",
+      "postcss.config.js"
+    ]
+  },
+  "production": {
+    "buildCommand": "npm run build",
+    "startCommand": "npm run start",
+    "requirements": [
+      "HTTPS certificate for PWA features",
+      "VAPID keys configured",
+      "Environment variables set"
+    ]
+  },
+  "compatibility": {
+    "browsers": {
+      "chrome": ">=88",
+      "firefox": ">=87",
+      "safari": ">=14",
+      "edge": ">=88"
+    },
+    "features": {
+      "serviceWorker": "Required for offline functionality",
+      "indexedDB": "Required for data storage",
+      "pushAPI": "Optional for notifications",
+      "webAppManifest": "Required for PWA installation"
+    }
+  },
+  "security": {
+    "auditCommand": "npm audit",
+    "updateStrategy": "Conservative - test thoroughly before updating major versions",
+    "vulnerabilityHandling": "Fix high/critical vulnerabilities immediately"
+  },
+  "performance": {
+    "bundleSize": {
+      "target": "<500KB gzipped for main bundle",
+      "monitoring": "webpack-bundle-analyzer for size analysis"
+    },
+    "dependencies": {
+      "treeshaking": "Enabled for all ES modules",
+      "codeSplitting": "Route-based splitting with Next.js"
+    }
+  },
+  "maintenance": {
+    "updateSchedule": "Monthly dependency review",
+    "majorUpdates": "Quarterly with testing period",
+    "securityUpdates": "Immediate for critical vulnerabilities"
+  }
+}
