@@ -201,7 +201,7 @@ export async function deleteCategory(id: string): Promise<void> {
       await tx.objectStore('tasks').put(task);
     }
     
-    await tx.complete;
+    await tx.done;
   } catch (error) {
     console.error('Failed to delete category:', error);
     throw error;
@@ -307,7 +307,7 @@ export async function bulkCreateTasks(tasks: Task[]): Promise<void> {
       )
     );
     
-    await tx.complete;
+    await tx.done;
   } catch (error) {
     console.error('Failed to bulk create tasks:', error);
     throw error;
@@ -325,7 +325,7 @@ export async function bulkUpdateTasks(tasks: Task[]): Promise<void> {
       )
     );
     
-    await tx.complete;
+    await tx.done;
   } catch (error) {
     console.error('Failed to bulk update tasks:', error);
     throw error;
@@ -341,7 +341,7 @@ export async function bulkDeleteTasks(ids: string[]): Promise<void> {
       ids.map((id) => tx.objectStore('tasks').delete(id))
     );
     
-    await tx.complete;
+    await tx.done;
   } catch (error) {
     console.error('Failed to bulk delete tasks:', error);
     throw error;

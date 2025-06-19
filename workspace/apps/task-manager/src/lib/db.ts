@@ -1,58 +1,18 @@
-import { openDB, DBSchema, IDBPDatabase } from 'idb';
-import { TaskManagerDB, DBTask, DBCategory, DBSettings, DBSyncAction } from './dbTypes';
+import { openDB, IDBPDatabase } from 'idb';
+import { DBTask, DBCategory, DBSettings, DBSyncAction } from './dbTypes';
 
 const DB_NAME = 'TaskManagerDB';
 const DB_VERSION = 1;
 
-interface TaskManagerDBSchema extends DBSchema {
-  tasks: {
-    key: string;
-    value: DBTask;
-    indexes: {
-      'by-status': string;
-      'by-priority': string;
-      'by-category': string;
-      'by-due-date': string;
-      'by-created-at': string;
-      'by-archived': boolean;
-    };
-    autoIncrement: false;
-  };
-  categories: {
-    key: string;
-    value: DBCategory;
-    indexes: {
-      'by-name': string;
-      'by-created-at': string;
-    };
-    autoIncrement: false;
-  };
-  settings: {
-    key: string;
-    value: DBSettings;
-    autoIncrement: false;
-  };
-  syncActions: {
-    key: string;
-    value: DBSyncAction;
-    indexes: {
-      'by-status': string;
-      'by-timestamp': string;
-      'by-entity': string;
-    };
-    autoIncrement: false;
-  };
-}
+let dbInstance: IDBPDatabase<any> | null = null;
 
-let dbInstance: IDBPDatabase<TaskManagerDBSchema> | null = null;
-
-export async function initDB(): Promise<IDBPDatabase<TaskManagerDBSchema>> {
+export async function initDB(): Promise<IDBPDatabase<any>> {
   if (dbInstance) {
     return dbInstance;
   }
 
   try {
-    dbInstance = await openDB<TaskManagerDBSchema>(DB_NAME, DB_VERSION, {
+    dbInstance = await openDB(DB_NAME, DB_VERSION, {
       upgrade(database, oldVersion, newVersion, transaction) {
         console.log(`Upgrading database from version ${oldVersion} to ${newVersion}`);
 
@@ -109,7 +69,7 @@ export async function initDB(): Promise<IDBPDatabase<TaskManagerDBSchema>> {
   }
 }
 
-async function initializeDefaultData(db: IDBPDatabase<TaskManagerDBSchema>) {
+async function initializeDefaultData(db: IDBPDatabase<any>) {
   const transaction = db.transaction(['categories', 'settings'], 'readwrite');
 
   try {
@@ -165,7 +125,7 @@ async function initializeDefaultData(db: IDBPDatabase<TaskManagerDBSchema>) {
       await transaction.objectStore('settings').add(defaultSettings);
     }
 
-    await transaction.complete;
+    await transaction.done;
     console.log('Default data initialized successfully');
   } catch (error) {
     console.error('Failed to initialize default data:', error);
@@ -174,7 +134,7 @@ async function initializeDefaultData(db: IDBPDatabase<TaskManagerDBSchema>) {
   }
 }
 
-export async function getDB(): Promise<IDBPDatabase<TaskManagerDBSchema>> {
+export async function getDB(): Promise<IDBPDatabase<any>> {
   if (!dbInstance) {
     return await initDB();
   }
@@ -214,7 +174,7 @@ export async function clearAllData(): Promise<void> {
       transaction.objectStore('syncActions').clear(),
     ]);
 
-    await transaction.complete;
+    await transaction.done;
     
     // Reinitialize default data
     await initializeDefaultData(db);
